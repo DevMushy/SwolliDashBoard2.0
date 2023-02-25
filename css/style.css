@@ -1,0 +1,98 @@
+.AbodyGradient{
+    color:white;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    height: 100vh;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.divForm{
+    color: black;
+    background-color: white;
+    text-align: center;
+    position: absolute;
+    width: 310px;
+    height: 442px;
+    top: 168px;
+    left: 32.5px;
+    border-radius: 10px;
+    box-shadow: -1px 6px 13px -2px #000000;
+}
+.divForm h3{
+    padding-top: 20px;
+    font-weight: bolder;
+}
+.divForm input[type=text],input[type=email],input[type=password]{
+    margin-top: 30px;
+    border-radius: 10px;
+    border: none;
+    width: 222px;
+    background-color: #D9D9D9;
+}
+.divForm input[type=checkbox]{
+margin-top: 50px;
+font-weight: lighter;
+}
+.divForm input[type=submit]{
+    margin-top: 50px;
+    width: 150px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+}
+
+.grafico{
+    background-color: #D9D9D9;
+    position: absolute;
+    width: 350px;
+    height: 212px;
+    left: 12.5px;
+    top: 85px;
+    border-radius: 10px;
+}
+.dayMonthYear{
+    position: absolute;
+    width: 111px;
+    height: 63px;
+    top: 305px;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    text-align: center;
+}
+.dayMonthYear h5{
+    top: 5px;
+    font-size: medium;
+    position: relative;
+}
+.dayMonthYear h3{
+    top: 5px;
+    color: blue;
+    position: relative;
+}
+.insert{
+position: absolute;
+width: 350px;
+height: 401px;
+left: 12.5px;
+top: 381px;
+text-align: center;
+border-radius: 5px;
+background: #D9D9D9;
+}
+.insert input{
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+}
