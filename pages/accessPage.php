@@ -10,7 +10,8 @@ if(isset($_POST['username'])){
 
     // Verifica se la password contiene parole chiave per le query
     if (preg_match("/SELECT|INSERT|UPDATE|DELETE|;|--/", $password)) {
-        // Messaggio di errore
+        //messaggio d'errore
+        header("Location: ./accessPage.php");
     } else {
         // Esegui la query per verificare se l'utente esiste già
         $sql = "SELECT * FROM userdata WHERE username = '$username' AND email = '$email' AND password = '$password'";
@@ -23,17 +24,27 @@ if(isset($_POST['username'])){
             $_SESSION['IDUser'] = $row['ID'];
             header("Location: ../index.php");
         } else {
-            // L'utente non esiste ancora, quindi inserisci i dati nella tabella userdata
-            $sql = "INSERT INTO userdata (username, email, password) VALUES ('$username', '$email', '$password')";
+            $sql = "SELECT * FROM userdata WHERE username = '$username' OR email = '$email'";
             $result = $conn->query($sql);
+    
+            // Controlla se l'utente esiste già
+            if ($result->num_rows < 1) {
+                // L'utente esiste già
+                // L'utente non esiste ancora, quindi inserisci i dati nella tabella userdata
+                $sql = "INSERT INTO userdata (username, email, password) VALUES ('$username', '$email', '$password')";
+                $result = $conn->query($sql);
 
-            // Esegui la query per ottenere l'ID dell'utente appena inserito
-            $sql = "SELECT * FROM userdata WHERE username = '$username' AND email = '$email' AND password = '$password'";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
+                // Esegui la query per ottenere l'ID dell'utente appena inserito
+                $sql = "SELECT * FROM userdata WHERE username = '$username' AND email = '$email' AND password = '$password'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
 
-            $_SESSION['IDUser'] = $row['ID'];
-            header("Location: ../index.php");
+                $_SESSION['IDUser'] = $row['ID'];
+                header("Location: ../index.php");
+            }else{
+                //messaggio d'errore
+                header("Location: ./accessPage.php");
+            }
         }
     }
 }
@@ -56,11 +67,11 @@ $conn->close();
     <div class="divForm">
         <h3>SwolliDashBoard 2.0</h3>
         <form action="" method="POST">
-            <input type="text" name="username" id="" placeholder="  Username..." required><br>
-            <input type="email" name="email" id="" placeholder="  Email..." required><br>
-            <input type="password" name="password"  id="" placeholder="  Password..." required><br>
-            <input type="checkbox" name="privacy" id="" required> Accetto la Swolli Privacy<br>
-            <input type="submit" name="Entra" value="ENTRA" id="">
+            <input type="text" name="username" id="1" placeholder="  Username..." required><br>
+            <input type="email" name="email" id="2" placeholder="  Email..." required><br>
+            <input type="password" name="password"  id="3" placeholder="  Password..." required><br>
+            <input type="checkbox" name="privacy" id="4" required> Accetto la Swolli Privacy<br>
+            <input type="submit" name="Entra" value="ENTRA" id="5">
         </form>
     </div>
     <!--Script-->
